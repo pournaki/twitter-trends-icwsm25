@@ -1,1 +1,51 @@
 * How Influencers and Multipliers Drive Polarization and Issue Alignment on Twitter/X - Data and Code
+
+This repository provides data and code to reproduce the alignment results from the paper
+
+[insert paper link here]
+
+The computations involve pre-processing retweet networks, computing stochastic block models and force-directed layouts, and finally computing a measure of issue alignment based on the way the issues sort users into similar opinion groups. While we cannot provide the full tweet objects due to Twitter/X's TOS, we provide anonymized retweet networks that allow to reproduce the alignment results. 
+
+The code is written in Python except for the force-directed layout, which requires MATLAB. The code is tested under Python 3.11. 
+
+1/ Clone the repository:
+#+BEGIN_SRC bash
+~ git clone https://github.com/pournaki/twitter-trends-icwsm25.git
+#+END_SRC
+
+2/ Install the required Python packages:
+#+BEGIN_SRC bash
+~ pip install -r requirements.txt
+#+END_SRC
+
+3/ Install [[https://graph-tool.skewed.de/][graph-tool]] (this code is tested with v.2.63).
+
+4/ Download the data from Zenodo [insert link here] and unpack it into ~./data/~, such that you have the following structure: 
+- ~./data/rtn~ containing the anonymized retweet networks
+- ~./data/trend2topic.csv~ containing the trend-topic assignment
+
+5/ Preprocess the retweet networks:
+- reduce to giant component
+- remove nodes with only 1 out-neighbor and in-degree 0
+- discard graphs with n_nodes < 50
+#+BEGIN_SRC bash
+~ python preprocess_retweetnetworks.py
+#+END_SRC
+
+6/ Compute the force-directed layouts:
+#+BEGIN_SRC bash
+~ matlab -batch "run('fdl.m')"
+#+END_SRC
+
+7/ Infer the stochastic block models:
+#+BEGIN_SRC bash
+~ python sbm_clustering.py
+#+END_SRC
+
+8/ Get the user-block-matrix:
+#+BEGIN_SRC bash
+~ python get_user_blocks_matrix.py
+#+END_SRC
+
+9/ Compute and plot the alignment by running the Jupyter Notebook ~alignment.ipynb~.
+
