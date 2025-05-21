@@ -1,12 +1,14 @@
-* How Influencers and Multipliers Drive Polarization and Issue Alignment on Twitter/X - Data and Code
+* How Influencers and Multipliers Drive Polarization and Issue Alignment on Twitter/X - Code
 
-This repository provides data and code to reproduce the alignment results from the paper
+This repository provides code to reproduce the alignment results presented in 
 
-[insert paper link here]
+Pournaki, A., Gaisbauer, F., Olbrich, E. (2025). [[https://arxiv.org/abs/2505.14280][How Influencers and Multipliers Drive Polarization and Issue Alignment on Twitter/X.]] To appear in /Proceedings of the International AAAI Conference on Web and Social Media (ICWSM). Vol. 19. 2025/.
 
-The computations involve pre-processing retweet networks, computing stochastic block models and force-directed layouts, and finally computing a measure of issue alignment based on the way the issues sort users into similar opinion groups. While we cannot provide the full tweet objects due to Twitter/X's TOS, we provide anonymized retweet networks that allow to reproduce the alignment results. 
+The computations involve pre-processing retweet networks, computing stochastic block models and force-directed layouts, and finally computing a measure of issue alignment based on the way the issues sort users into similar opinion groups. 
 
-The code is written in Python except for the force-directed layout, which requires MATLAB. The code is tested under Python 3.11. 
+While we cannot provide the full tweet objects due to Twitter/X's TOS, we provide anonymized retweet networks that allow to reproduce the alignment results. They can be downloaded [[https://zenodo.org/records/15442939][here]].
+
+The code is tested under Python 3.11 and MATLAB 2023b (for the force-directed layout).
 
 1/ Clone the repository:
 #+BEGIN_SRC bash
@@ -20,7 +22,7 @@ The code is written in Python except for the force-directed layout, which requir
 
 3/ Install [[https://graph-tool.skewed.de/][graph-tool]] (this code is tested with v.2.63).
 
-4/ Download the data from Zenodo [insert link here] and unpack it into ~./data/~, such that you have the following structure: 
+4/ Download the [[https://zenodo.org/records/15442939][data]] and unpack it into ~./data/~, such that you have the following structure: 
 - ~./data/rtn~ containing the anonymized retweet networks
 - ~./data/trend2topic.csv~ containing the trend-topic assignment
 
